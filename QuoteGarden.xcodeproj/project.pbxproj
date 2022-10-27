@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8EA3C5AD283833C000D00CAD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 8EA3C5AC283833C000D00CAD /* Lottie */; };
 		DE58F66328319E7400362717 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58F66228319E7400362717 /* AlertItem.swift */; };
 		DE58F6652831ACD600362717 /* spinner.json in Resources */ = {isa = PBXBuildFile; fileRef = DE58F6642831ACD600362717 /* spinner.json */; };
 		DE58F66A2831AD4D00362717 /* LottieSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58F6692831AD4D00362717 /* LottieSpinnerView.swift */; };
@@ -18,7 +19,6 @@
 		DE58F67828381D3700362717 /* HelperFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58F67728381D3700362717 /* HelperFunc.swift */; };
 		DE58F67E28382CCA00362717 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58F67D28382CCA00362717 /* EmptyStateView.swift */; };
 		DE58F68028382CDE00362717 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58F67F28382CDE00362717 /* LoadingView.swift */; };
-		DE58F68328382EA000362717 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = DE58F68228382EA000362717 /* Lottie */; };
 		DEBAAF03282E7A8C0077DCD6 /* QuoteGardenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBAAF02282E7A8C0077DCD6 /* QuoteGardenApp.swift */; };
 		DEBAAF05282E7A8C0077DCD6 /* QuoteGeneresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBAAF04282E7A8C0077DCD6 /* QuoteGeneresView.swift */; };
 		DEBAAF07282E7A8D0077DCD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEBAAF06282E7A8D0077DCD6 /* Assets.xcassets */; };
@@ -67,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DE58F68328382EA000362717 /* Lottie in Frameworks */,
+				8EA3C5AD283833C000D00CAD /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,7 +203,7 @@
 			);
 			name = QuoteGarden;
 			packageProductDependencies = (
-				DE58F68228382EA000362717 /* Lottie */,
+				8EA3C5AC283833C000D00CAD /* Lottie */,
 			);
 			productName = QuoteGarden;
 			productReference = DEBAAEFF282E7A8C0077DCD6 /* QuoteGarden.app */;
@@ -236,6 +236,7 @@
 			packageReferences = (
 				DE58F6662831AD2800362717 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				DE58F68128382EA000362717 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				8EA3C5AB283833C000D00CAD /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = DEBAAF00282E7A8C0077DCD6 /* Products */;
 			projectDirPath = "";
@@ -507,6 +508,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8EA3C5AB283833C000D00CAD /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		DE58F6662831AD2800362717 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -526,7 +535,7 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		DE58F68228382EA000362717 /* Lottie */ = {
+		8EA3C5AC283833C000D00CAD /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DE58F6662831AD2800362717 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;

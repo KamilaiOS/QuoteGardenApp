@@ -27,7 +27,7 @@ class QuoteViewModel: ObservableObject {
                 switch result {
                 case .success(let quoteResponse):
                     DispatchQueue.main.async {
-                        self.quotes.append(contentsOf: quoteResponse.data)
+                        self.quotes.append(contentsOf: quoteResponse.data.shuffled())
                         self.pagination = quoteResponse.pagination
                     }
                 case .failure(let error):

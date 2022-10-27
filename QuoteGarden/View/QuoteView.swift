@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuoteView: View {
     let genres: String
-    @ObservedObject var quoteViewModel = QuoteViewModel(networkService: NetworkService())
+    @StateObject var quoteViewModel = QuoteViewModel(networkService: NetworkService())
     var body: some View {
         ZStack {
             if quoteViewModel.isLoading == true {

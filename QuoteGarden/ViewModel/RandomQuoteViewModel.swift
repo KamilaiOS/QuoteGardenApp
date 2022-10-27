@@ -15,6 +15,7 @@ class RandomQuoteViewModel: ObservableObject {
         self.networkService = networkService
         getRandomQuotes()
     }
+    
     func getRandomQuotes() {
         let url = "https://quote-garden.herokuapp.com/api/v3/quotes/random"
         self.networkService.fetchRequest(urlString: url,

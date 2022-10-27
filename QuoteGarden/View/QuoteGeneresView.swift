@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct QuoteGenresView: View {
-    @ObservedObject var genreViewModel = QuoteGenreViewModel(networkService: NetworkService())
-    @ObservedObject var randomQuoteViewModel = RandomQuoteViewModel(networkService: NetworkService())
+    @StateObject var genreViewModel = QuoteGenreViewModel(networkService: NetworkService())
+    @StateObject var randomQuoteViewModel = RandomQuoteViewModel(networkService: NetworkService())
     var body: some View {
         if genreViewModel.isLoading == true {
             LoadingView()
