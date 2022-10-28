@@ -20,6 +20,7 @@ class QuoteGenreViewModel: ObservableObject {
             self.getGenre()
         }
     }
+    
     func getGenre() {
         let url = "https://quote-garden.herokuapp.com/api/v3/genres"
         networkService.fetchRequest(urlString: url,

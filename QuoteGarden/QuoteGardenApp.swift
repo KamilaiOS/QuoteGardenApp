@@ -9,19 +9,24 @@ import SwiftUI
 
 @main
 struct QuoteGardenApp: App {
+    
     let isOnBoardingCompleted: Bool = UserDefaults.standard.bool(forKey: "isOnBoardingCompleted")
+    
+    let persistenceController = PersistenceController.shared
+
     var body: some Scene {
         WindowGroup {
             checkIfOnboarded()
         }
     }
+    
     func checkIfOnboarded() -> some View {
         if isOnBoardingCompleted == false {
             print("false")
             return AnyView(OnboardingView())
         } else {
             print("true")
-            return AnyView(QuoteGenresView())
+            return AnyView(QuoteGenresView().environment(\.managedObjectContext, persistenceController.container.viewContext))
         }
      }
     }

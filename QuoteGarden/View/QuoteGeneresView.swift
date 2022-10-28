@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct QuoteGenresView: View {
+    
+    @Environment(\.managedObjectContext) var viewContext
+    
     @StateObject var genreViewModel = QuoteGenreViewModel(networkService: NetworkService())
     @StateObject var randomQuoteViewModel = RandomQuoteViewModel(networkService: NetworkService())
+   
     var body: some View {
         if genreViewModel.isLoading == true {
             LoadingView()
@@ -28,6 +32,11 @@ struct QuoteGenresView: View {
                     createQuoteGenresView()
                         .listStyle(.automatic)
                         .navigationTitle("Quote Generes")
+                        .toolbar {
+                            NavigationLink("saved", destination: SavedQuotesView().environment(\.managedObjectContext, self.viewContext))
+                            
+                        }
+
                 }
             }
         }
@@ -46,7 +55,7 @@ struct QuoteGenresView: View {
     }
     func createQuoteGenresCell() -> some View {
         ForEach(genreViewModel.quoteGenres, id: \.self) { genre in
-            NavigationLink(destination: QuoteView(genres: genre)) {
+            NavigationLink(destination: QuoteView(genres: genre).environment(\.managedObjectContext,viewContext)) {
                 HStack {
                     Text(genre.capitalized)
                         .fontWeight(.light)
@@ -59,11 +68,14 @@ struct QuoteGenresView: View {
             }
         }
     }
+    
     func createQuoteGenresView() -> some View {
         ScrollView {
-            createQuoteOfTheDayView().padding(8)
+            
+            createQuoteOfTheDayView()
             ListHeader()
             createQuoteGenresCell()
+
             ListFooter()
             /*
              List {

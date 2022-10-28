@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8EA3C5AD283833C000D00CAD /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 8EA3C5AC283833C000D00CAD /* Lottie */; };
+		8EA5D86A290C2C7F001069E8 /* QuoteBookmark.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5D868290C2C7F001069E8 /* QuoteBookmark.xcdatamodeld */; };
+		8EA5D871290C2F9C001069E8 /* QuoteCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5D86F290C2F9C001069E8 /* QuoteCD+CoreDataClass.swift */; };
+		8EA5D872290C2F9C001069E8 /* QuoteCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5D870290C2F9C001069E8 /* QuoteCD+CoreDataProperties.swift */; };
+		8EA5D874290C311E001069E8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5D873290C311E001069E8 /* Persistence.swift */; };
+		8EA5D876290C3D20001069E8 /* SavedQuotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5D875290C3D20001069E8 /* SavedQuotesView.swift */; };
 		DE58F66328319E7400362717 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58F66228319E7400362717 /* AlertItem.swift */; };
 		DE58F6652831ACD600362717 /* spinner.json in Resources */ = {isa = PBXBuildFile; fileRef = DE58F6642831ACD600362717 /* spinner.json */; };
 		DE58F66A2831AD4D00362717 /* LottieSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE58F6692831AD4D00362717 /* LottieSpinnerView.swift */; };
@@ -35,6 +40,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8EA5D869290C2C7F001069E8 /* QuoteBookmark.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = QuoteBookmark.xcdatamodel; sourceTree = "<group>"; };
+		8EA5D86F290C2F9C001069E8 /* QuoteCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuoteCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8EA5D870290C2F9C001069E8 /* QuoteCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QuoteCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8EA5D873290C311E001069E8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		8EA5D875290C3D20001069E8 /* SavedQuotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedQuotesView.swift; sourceTree = "<group>"; };
 		DE58F66228319E7400362717 /* AlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		DE58F6642831ACD600362717 /* spinner.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spinner.json; sourceTree = "<group>"; };
 		DE58F6692831AD4D00362717 /* LottieSpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieSpinnerView.swift; sourceTree = "<group>"; };
@@ -135,6 +145,10 @@
 				DEBAAF12282E7AB70077DCD6 /* ViewModel */,
 				DEBAAF06282E7A8D0077DCD6 /* Assets.xcassets */,
 				DEBAAF08282E7A8D0077DCD6 /* Preview Content */,
+				8EA5D868290C2C7F001069E8 /* QuoteBookmark.xcdatamodeld */,
+				8EA5D873290C311E001069E8 /* Persistence.swift */,
+				8EA5D86F290C2F9C001069E8 /* QuoteCD+CoreDataClass.swift */,
+				8EA5D870290C2F9C001069E8 /* QuoteCD+CoreDataProperties.swift */,
 			);
 			path = QuoteGarden;
 			sourceTree = "<group>";
@@ -162,6 +176,7 @@
 				DE58F67C28382C9200362717 /* CustomView */,
 				DE58F66F2837A35D00362717 /* OnboardingView.swift */,
 				DEBAAF04282E7A8C0077DCD6 /* QuoteGeneresView.swift */,
+				8EA5D875290C3D20001069E8 /* SavedQuotesView.swift */,
 				DEBAAF1A282E875F0077DCD6 /* QuoteView.swift */,
 			);
 			path = View;
@@ -290,7 +305,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEBAAF19282E7C260077DCD6 /* NetworkService.swift in Sources */,
+				8EA5D876290C3D20001069E8 /* SavedQuotesView.swift in Sources */,
+				8EA5D871290C2F9C001069E8 /* QuoteCD+CoreDataClass.swift in Sources */,
 				DEBAAF20282E89380077DCD6 /* QuoteViewModel.swift in Sources */,
+				8EA5D874290C311E001069E8 /* Persistence.swift in Sources */,
+				8EA5D86A290C2C7F001069E8 /* QuoteBookmark.xcdatamodeld in Sources */,
 				DEBAAF1B282E875F0077DCD6 /* QuoteView.swift in Sources */,
 				DE58F6702837A35D00362717 /* OnboardingView.swift in Sources */,
 				DE58F68028382CDE00362717 /* LoadingView.swift in Sources */,
@@ -301,6 +320,7 @@
 				DEBAAF22282EE2C00077DCD6 /* QuoteCardView.swift in Sources */,
 				DEBAAF17282E7BF50077DCD6 /* QuoteGenereViewModel.swift in Sources */,
 				DE58F67E28382CCA00362717 /* EmptyStateView.swift in Sources */,
+				8EA5D872290C2F9C001069E8 /* QuoteCD+CoreDataProperties.swift in Sources */,
 				DEBAAF05282E7A8C0077DCD6 /* QuoteGeneresView.swift in Sources */,
 				DEBAAF24282EE5480077DCD6 /* UIColor+Ext.swift in Sources */,
 				DEBAAF03282E7A8C0077DCD6 /* QuoteGardenApp.swift in Sources */,
@@ -541,6 +561,19 @@
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		8EA5D868290C2C7F001069E8 /* QuoteBookmark.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8EA5D869290C2C7F001069E8 /* QuoteBookmark.xcdatamodel */,
+			);
+			currentVersion = 8EA5D869290C2C7F001069E8 /* QuoteBookmark.xcdatamodel */;
+			path = QuoteBookmark.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DEBAAEF7282E7A8C0077DCD6 /* Project object */;
 }
