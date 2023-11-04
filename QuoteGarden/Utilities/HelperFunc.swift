@@ -13,6 +13,30 @@ func delay(seconds: Double, completion: @escaping () -> Void) {
     DispatchQueue.main.asyncAfter(deadline: .now() + seconds, execute: completion)
 }
 
+enum ViewState <T> {
+    case IDLE
+    case LOADING
+    case SUCCESS (response: T)
+    case FAILURE (error: String)
+}
+
+/*
+switch .stateMachine {
+case .IDLE:
+  
+
+case .LOADING:
+  
+    
+case .SUCCESS(let response):
+  
+    
+case .FAILURE(let errorStr):
+    
+   
+}
+*/
+
 struct HelperFunc {
     func makeGredient(color1: String, color2: String) -> some View {
         let color1 = Color( UIColor.hexStringToUIColor(hex: color1))

@@ -9,19 +9,20 @@ import Foundation
 import SwiftUI
 
 struct QuoteModel: Codable, Hashable {
-    var statusCode: Int
-    var message: String
-    var pagination: Pagination
-    var totalQuotes: Int
-    var data: [Quote]
+    var count: Int
+    var page: Int
+    var totalCount: Int
+    var totalPages: Int
+    var results: [Quote]
 }
 
 struct Quote: Codable, Hashable {
     var quoteText: String
     var quoteAuthor: String
-    var quoteGenre: String
+    var quoteGenre: [String]
     var id: String
     private enum CodingKeys: String, CodingKey {
-        case quoteText, id = "_id", quoteAuthor, quoteGenre
+        case quoteText = "content", id = "_id", quoteAuthor = "author", quoteGenre = "tags"
     }
 }
+

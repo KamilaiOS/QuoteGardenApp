@@ -17,6 +17,7 @@ struct QuoteGardenApp: App {
     var body: some Scene {
         WindowGroup {
             checkIfOnboarded()
+            //QuoteView(tag: "famous-quotes")
         }
     }
     
@@ -27,6 +28,10 @@ struct QuoteGardenApp: App {
         } else {
             print("true")
             return AnyView(QuoteGenresView().environment(\.managedObjectContext, persistenceController.container.viewContext))
+            
+            //return AnyView(QuotesBookmarkView().environment(\.managedObjectContext, persistenceController.container.viewContext))
+            
         }
      }
     }
+

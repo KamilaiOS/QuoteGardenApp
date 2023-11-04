@@ -53,7 +53,7 @@ class NetworkService: NetworkManager {
                                    httpMethod: HTTPMethod,
                                    json: [String: Any]?,
                                    completion: @escaping (Result<T, Error>) -> Void) {
-         //NSLog(#function + " 🔵 🔵 🔵 URL:\(urlString), \n parameters: \(String(describing: json)) \n 🔵 🔵 🔵")
+         NSLog(#function + " 🔵 🔵 🔵 URL:\(urlString), \n parameters: \(String(describing: json)) \n 🔵 🔵 🔵")
         // Create Request
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)

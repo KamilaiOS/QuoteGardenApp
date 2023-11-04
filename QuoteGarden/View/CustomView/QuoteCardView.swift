@@ -34,7 +34,7 @@ struct QuoteCardView: View {
 
 struct QuoteCardView_Previews: PreviewProvider {
     static var previews: some View {
-        let dummyQuote = Quote(quoteText: "", quoteAuthor: "Leon Edel", quoteGenre: "", id: "")
+        let dummyQuote = Quote(quoteText: "", quoteAuthor: "Leon Edel", quoteGenre: [], id: "")
         QuoteCardView(quote: dummyQuote).padding()
             .previewLayout(PreviewLayout.sizeThatFits)
     }

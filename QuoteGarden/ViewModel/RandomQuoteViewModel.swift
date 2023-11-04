@@ -8,26 +8,31 @@
 import Foundation
 
 class RandomQuoteViewModel: ObservableObject {
-    @Published var randomQuote: Quote?
-    private var pagination: Pagination?
+
+    @Published var stateMachine:ViewState<Quote> = .IDLE
+    
     let networkService: NetworkManager
+    
     init(networkService: NetworkManager) {
         self.networkService = networkService
         getRandomQuotes()
     }
     
     func getRandomQuotes() {
-        let url = "https://quote-garden.herokuapp.com/api/v3/quotes/random"
+        let url = "https://api.quotable.io/random"
+        
+        self.stateMachine = .LOADING
+        
         self.networkService.fetchRequest(urlString: url,
                                          httpMethod: .get,
-                                         json: nil) {(result: Result<QuoteModel, Error>) in
+                                         json: nil) {(result: Result<Quote, Error>) in
             switch result {
             case .success(let quoteResponse):
                 DispatchQueue.main.async {
-                    self.randomQuote = quoteResponse.data.first
+                    self.stateMachine = .SUCCESS(response: quoteResponse)
                 }
             case .failure(let error):
-                print(error.localizedDescription)
+                self.stateMachine = .FAILURE(error: error.localizedDescription)
             }
         }
     }

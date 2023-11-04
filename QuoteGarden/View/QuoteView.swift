@@ -9,16 +9,52 @@ import SwiftUI
 
 struct QuoteView: View {
     
-    @Environment(\.managedObjectContext) var viewContext
+   @Environment(\.managedObjectContext) var viewContext
     
-    let quotesFetchRequest = QuoteCD.basicFetchRequest()
-      var saveQuotes: FetchedResults<QuoteCD> {
-          quotesFetchRequest.wrappedValue
-      }
+//    let quotesFetchRequest = QuoteCD.basicFetchRequest()
+//      var saveQuotes: FetchedResults<QuoteCD> {
+//          quotesFetchRequest.wrappedValue
+//      }
     
-    let genres: String
+    let tag: String
+   
     @StateObject var quoteViewModel = QuoteViewModel(networkService: NetworkService())
+    
     var body: some View {
+        
+        
+        switch quoteViewModel.stateMachine {
+        case .IDLE:
+            LoadingView()
+                .onAppear {
+                    quoteViewModel.fetchQuotes(tag: tag)
+                    
+                }
+                
+            .ignoresSafeArea()
+
+        case .LOADING:
+             LoadingView()
+                
+                .ignoresSafeArea()
+                
+            
+        case .SUCCESS(let quotes):
+            setupQuoteView(quotes: quotes)
+                
+            
+        case .FAILURE(let errorStr):
+            EmptyStateView(title: "Oops!!", dec: errorStr)
+               
+              .ignoresSafeArea()
+           
+        }
+        
+        
+        
+        
+        /*
+        
         ZStack {
             if quoteViewModel.isLoading == true {
                 LoadingView()
@@ -28,52 +64,54 @@ struct QuoteView: View {
         }.onAppear {
             quoteViewModel.getQuotes(page: 1, genre: genres)
         }
+        */
+        
     }
-    func setupQuoteView() -> some View {
+    func setupQuoteView(quotes: [Quote]) -> some View {
         let gridItem = [ GridItem(.flexible(), spacing: 8)]
         return ScrollView {
             LazyVGrid(columns: gridItem, spacing: 10) {
-                ForEach(quoteViewModel.quotes, id: \.self) { quote in
+                ForEach(quotes, id: \.self) { quote in
                     QuoteCardView(quote: quote).padding([.leading, .trailing], 8)
                         .onTapGesture {
                            saveQuote(quote: quote)
-                            fetchQuoteCD()
+                            //fetchQuoteCD()
                         }
                 }
-                if quoteViewModel.quotes.count > 1 {
-                    Button(action: loadMoreQuotes) {
-                        Text("Load More \(genres.capitalized) Quotes")
-                    }
+                if quotes.count > 1 && quoteViewModel.totalQuoteCount != quotes.count {
+                    Button (action: {
+                        loadMoreQuotes()
+                    }, label: {
+                        Text("Load More \(tag.capitalized) Quotes")
+                    })
                 }
             }
         }
-        .navigationTitle("Genre: \(genres.capitalized)")
-        .alert(item: $quoteViewModel.alertItem) { alertItem in
-            Alert(title: Text(alertItem.title), message: Text(alertItem.message), dismissButton: .default(Text("OK")))
-        }
+        .navigationTitle("Genre: \(tag.capitalized)")
     }
     
     func loadMoreQuotes() {
-        quoteViewModel.fetchNextPage(genre: genres)
+        quoteViewModel.fetchNextPageQuotes(tag: tag)
     }
     
     func saveQuote(quote: Quote) {
+        
     QuoteCD.saveQuote(text: quote.quoteText,
                       author: quote.quoteAuthor,
-                      genere: quote.quoteGenre,
+                      genere: tag,
                       using: self.viewContext)
     }
     
     func fetchQuoteCD() {
        
-        for quote in saveQuotes {
-            print(quote.text ?? "")
-        }
+//        for quote in saveQuotes {
+//            print(quote.text ?? "")
+//        }
     }
 }
 
 struct QuoteView_Previews: PreviewProvider {
     static var previews: some View {
-        QuoteView(genres: "")
+        QuoteView(tag: "")
     }
 }

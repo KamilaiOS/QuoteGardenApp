@@ -7,14 +7,27 @@
 
 import Foundation
 
-struct GenreModel: Codable, Hashable {
-    var statusCode: Int
-    var message: String
-    var data: [String]
-}
+//struct GenreModel: Codable, Hashable {
+//    var statusCode: Int
+//    var message: String
+//    var data: [String]
+//}
 
 struct Pagination: Codable, Hashable {
-    var currentPage: Int
+    var page: Int
     var nextPage: Int?
     var totalPages: Int
 }
+
+struct GenreModel: Codable, Hashable, Identifiable {
+    var id: String
+    var name: String
+    var slug: String
+    var quoteCount: Int
+    private enum CodingKeys: String, CodingKey {
+        case name, id = "_id", quoteCount, slug
+    }
+}
+
+
+

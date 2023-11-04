@@ -7,12 +7,13 @@
 
 import SwiftUI
 
-struct SavedQuotesView: View {
+struct QuotesBookmarkView: View {
     
     @Environment(\.managedObjectContext) var viewContext
     
     let quotesFetchRequest = QuoteCD.basicFetchRequest()
-      var saveQuotes: FetchedResults<QuoteCD> {
+    
+    var saveQuotes: FetchedResults<QuoteCD> {
           quotesFetchRequest.wrappedValue
       }
     
@@ -21,7 +22,7 @@ struct SavedQuotesView: View {
         ForEach(saveQuotes, id: \.self) { quote in
             let tempQuote = Quote(quoteText: quote.text ?? "",
                                   quoteAuthor: quote.author ?? "",
-                                  quoteGenre: quote.genere ?? "",
+                                  quoteGenre: [quote.genere ?? ""] ,
                                   id: "00")
             QuoteCardView(quote: tempQuote).padding([.leading, .trailing], 8)
           }
@@ -31,6 +32,6 @@ struct SavedQuotesView: View {
 
 struct SavedQuotesView_Previews: PreviewProvider {
     static var previews: some View {
-        SavedQuotesView()
+        QuotesBookmarkView()
     }
 }
