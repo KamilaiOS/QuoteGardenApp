@@ -1,4 +1,3 @@
-//
 //  RandomQuoteViewModel.swift
 //  QuoteGarden
 //
@@ -6,10 +5,12 @@
 //
 
 import Foundation
+import Observation
 
-class RandomQuoteViewModel: ObservableObject {
+@Observable
+class RandomQuoteViewModel {
 
-    @Published var stateMachine:ViewState<Quote> = .IDLE
+    var stateMachine:ViewState<Quote> = .IDLE
     
     let networkService: NetworkManager
     
@@ -37,3 +38,4 @@ class RandomQuoteViewModel: ObservableObject {
         }
     }
 }
+

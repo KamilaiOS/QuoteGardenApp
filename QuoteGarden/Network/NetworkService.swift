@@ -60,6 +60,7 @@ class NetworkService: NetworkManager {
         request.httpMethod = httpMethod.rawValue
         request.addValue("eR5XtJNNLoTYZCED10euqvOQ4ooRhr08", forHTTPHeaderField: "apikey")
         
+        
         if let postJson = json {
             // HTTP Headers
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")

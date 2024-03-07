@@ -11,7 +11,6 @@ import CoreData
 struct QuoteGenresView: View {
     
     @Environment(\.managedObjectContext) var viewContext
-    
     @StateObject var genreViewModel = QuoteGenreViewModel(networkService: NetworkService())
    
     var body: some View {
@@ -26,19 +25,25 @@ struct QuoteGenresView: View {
               LoadingView()
             
         case .SUCCESS(let quoteRes):
-            
-            NavigationStack {
-                ScrollView {
-                    RandomQuoteView(quoteVM: genreViewModel)
-                    ListHeader()
-                    QuoteGenresCellView(tags: quoteRes, viewContext: viewContext)
-                    .navigationDestination(for: GenreModel.self, destination: { tag in
-                        QuoteView(tag: tag.slug).environment(\.managedObjectContext,viewContext)
-                    })
-                    ListFooter()
-                }.padding()
-            }
-            
+          
+               
+                NavigationStack {
+                    
+                    ScrollView {
+                        RandomQuoteView(quoteVM: genreViewModel)
+                            .padding()
+                        ListHeader()
+                        QuoteGenresCellView(tags: quoteRes, viewContext: viewContext)
+                            .navigationDestination(for: GenreModel.self, destination: { tag in
+                                QuoteView(tag: tag.slug).environment(\.managedObjectContext,viewContext)
+                            }).padding()
+                        ListFooter()
+                    }.background(Color(.blue))
+                   // .background(makeGredient())
+                 
+                }.ignoresSafeArea()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
         case .FAILURE(let errorStr):
               EmptyStateView(title: "Oops!!", dec: errorStr)
                 .ignoresSafeArea()
@@ -46,7 +51,9 @@ struct QuoteGenresView: View {
         }
     }
     
-
+    func makeGredient() -> some View {
+        return HelperFunc().makeGredient(color1: "#ee0979", color2: "#ff6a00" )
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -58,9 +65,11 @@ struct ContentView_Previews: PreviewProvider {
 struct ListHeader: View {
     var body: some View {
         HStack {
-            Text("Quote Genres").fontWeight(.medium)
+            Text("Quote Genres").fontWeight(.bold)
+                //.font(.custom("EBGaramond-VariableFont_wght", size: 20))
+                .font(.custom("Rustic Market", size: 30))
             Spacer()
-        }
+        }.padding()
     }
 }
 
@@ -68,7 +77,7 @@ struct ListFooter: View {
     var body: some View {
         Text("Made By Kamila Anna Lech")
             .foregroundColor(.gray)
-            .font(.footnote)
+            .font(.custom("Rustic Market", size: 20).bold())
     }
 }
 
@@ -80,10 +89,6 @@ struct QuoteGenresCellView: View {
     var viewContext: NSManagedObjectContext
     
     var body: some View {
-        
-        
-       
-            
             ForEach(tags, id: \.self) { tag in
                 NavigationLink(value: tag, label: {
                     HStack {
@@ -95,14 +100,18 @@ struct QuoteGenresCellView: View {
                         Text("➡︎")
                     }
                     .padding(8)
-                    .background(RoundedRectangle(cornerRadius: 10).fill(.gray.opacity(0.5)))
-                    .foregroundColor(.black)
+                    .overlay(
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(.gray, lineWidth: 3)
+                        )
+                   
                 })
-                
-              }
+            }.font(.custom("Rustic Market", size: 20))
+            .foregroundColor(.white)
+            .background(.white.opacity(0.25))
+            .cornerRadius(15)
             
-            
-            
+     
         
         
         /*
@@ -123,6 +132,11 @@ struct QuoteGenresCellView: View {
         */
 
     }
+    
+    
+func makeGredient() -> some View {
+    return HelperFunc().makeGredient(color1: "#ee0979", color2: "#ff6a00" )
+}
 }
 
 struct RandomQuoteView: View {

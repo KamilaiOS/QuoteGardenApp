@@ -7,12 +7,6 @@
 
 import Foundation
 
-//struct GenreModel: Codable, Hashable {
-//    var statusCode: Int
-//    var message: String
-//    var data: [String]
-//}
-
 struct Pagination: Codable, Hashable {
     var page: Int
     var nextPage: Int?

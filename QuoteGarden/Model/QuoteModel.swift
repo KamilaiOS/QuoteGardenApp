@@ -25,4 +25,3 @@ struct Quote: Codable, Hashable {
         case quoteText = "content", id = "_id", quoteAuthor = "author", quoteGenre = "tags"
     }
 }
-

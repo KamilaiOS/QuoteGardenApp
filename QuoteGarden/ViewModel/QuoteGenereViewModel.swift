@@ -7,13 +7,14 @@
 
 import Foundation
 import SwiftUI
+import Observation
 
-
+@Observable
 class QuoteGenreViewModel: ObservableObject {
 
-    @Published var stateMachine:ViewState<[GenreModel]> = .IDLE
+    var stateMachine:ViewState<[GenreModel]> = .IDLE
     
-    @Published var randomQuote:Quote = Quote(quoteText: "", quoteAuthor: "", quoteGenre: [""], id: "")
+    var randomQuote:Quote = Quote(quoteText: "", quoteAuthor: "", quoteGenre: [""], id: "")
     
     let networkService: NetworkManager
     
@@ -48,7 +49,7 @@ class QuoteGenreViewModel: ObservableObject {
     func getRandomQuotes() {
         let url = "https://api.quotable.io/random"
         
-       
+        
         
         self.networkService.fetchRequest(urlString: url,
                                          httpMethod: .get,
@@ -63,5 +64,7 @@ class QuoteGenreViewModel: ObservableObject {
                 //self.stateMachine = .FAILURE(error: error.localizedDescription)
             }
         }
+        
     }
 }
+

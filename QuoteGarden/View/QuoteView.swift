@@ -24,25 +24,21 @@ struct QuoteView: View {
         
         
         switch quoteViewModel.stateMachine {
+            
         case .IDLE:
             LoadingView()
                 .onAppear {
                     quoteViewModel.fetchQuotes(tag: tag)
-                    
                 }
-                
             .ignoresSafeArea()
 
         case .LOADING:
              LoadingView()
-                
                 .ignoresSafeArea()
-                
             
         case .SUCCESS(let quotes):
             setupQuoteView(quotes: quotes)
                 
-            
         case .FAILURE(let errorStr):
             EmptyStateView(title: "Oops!!", dec: errorStr)
                
@@ -50,11 +46,7 @@ struct QuoteView: View {
            
         }
         
-        
-        
-        
         /*
-        
         ZStack {
             if quoteViewModel.isLoading == true {
                 LoadingView()
@@ -65,8 +57,8 @@ struct QuoteView: View {
             quoteViewModel.getQuotes(page: 1, genre: genres)
         }
         */
-        
     }
+    
     func setupQuoteView(quotes: [Quote]) -> some View {
         let gridItem = [ GridItem(.flexible(), spacing: 8)]
         return ScrollView {
@@ -75,7 +67,7 @@ struct QuoteView: View {
                     QuoteCardView(quote: quote).padding([.leading, .trailing], 8)
                         .onTapGesture {
                            saveQuote(quote: quote)
-                            //fetchQuoteCD()
+                            fetchQuoteCD()
                         }
                 }
                 if quotes.count > 1 && quoteViewModel.totalQuoteCount != quotes.count {

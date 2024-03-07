@@ -6,31 +6,37 @@
 //
 
 import Foundation
+import Observation
 
-class QuotennnViewModel: ObservableObject {
-    @Published var quotes: [Quote] = []
-    @Published var alertItem: AlertItem?
-    @Published var isLoading = false
+@MainActor
+/*
+class QuotennnViewModel: Observable {
+     var quotes: [Quote] = []
+     var alertItem: AlertItem?
+     var isLoading = false
     private var pagination: Int?
     let networkService: NetworkManager
     init(networkService: NetworkManager) {
         self.networkService = networkService
         self.isLoading = true
     }
+    
     func getQuotes(page: Int, genre: String) {
         delay(seconds: 1) {
-            let url = "https://quote-garden.herokuapp.com/api/v3/quotes?page=\(page)&genre=\(genre)"
+            let url = "" //"https://quote-garden.herokuapp.com/api/v3/quotes?page=\(page)&genre=\(genre)"
             self.networkService.fetchRequest(urlString: url,
                                              httpMethod: .get,
                                              json: nil) { (result: Result<QuoteModel, Error>) in
                 DispatchQueue.main.async { self.isLoading = false }
                 switch result {
                 case .success(let quoteResponse):
+                    print("CALLED URL: \(url)")
                     DispatchQueue.main.async {
                         self.quotes.append(contentsOf: quoteResponse.results.shuffled())
                         self.pagination = quoteResponse.page
                     }
                 case .failure(let error):
+                    print("CALLED URL: \(url)")
                     DispatchQueue.main.async {
                         self.alertItem = AlertItem(title: "Ooops!", message: error.localizedDescription)}
                     print(error.localizedDescription)
@@ -51,6 +57,7 @@ class QuotennnViewModel: ObservableObject {
 //        getQuotes(page: pageNo, genre: genre)
 //    }
 }
+ */
 
 class QuoteViewModel: ObservableObject {
     
@@ -72,8 +79,8 @@ class QuoteViewModel: ObservableObject {
         pagination+=1
         
         delay(seconds: 1) {
-           // let url = "https://api.quotable.io/quotes?page=\(self.pagination)&tags=\(tag)"
-            let url = "https://newscatcherpi.com/latest_headlines&apikey=wjyhxr-mBQZo23zZoFB_s_fntAkLMJuj93jCwfr8_9k"
+            let url = "https://api.quotable.io/quotes?page=\(self.pagination)&tags=\(tag)"
+            //let url = "https://newscatcherpi.com/latest_headlines&apikey=wjyhxr-mBQZo23zZoFB_s_fntAkLMJuj93jCwfr8_9k"
             self.networkService.fetchRequest(urlString: url,
                                              httpMethod: .get,
                                              json: nil) {(result: Result<QuoteModel, Error>) in
@@ -85,6 +92,7 @@ class QuoteViewModel: ObservableObject {
                         self.quotes.append(contentsOf: quoteResponse.results)
         
                         self.stateMachine = .SUCCESS(response: self.quotes)
+                        print("CALLED URL: \(url)")
                     }
                 case .failure(let error):
                     self.stateMachine = .FAILURE(error: error.localizedDescription)
@@ -107,3 +115,4 @@ class QuoteViewModel: ObservableObject {
     }
     
 }
+
